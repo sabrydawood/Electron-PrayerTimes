@@ -1,0 +1,20 @@
+**/node_modules
+**/dist
+**/credentials
+**/credentials-backup
+**/new_credentials
+**/logs
+*.zip
+*.rar
+**/*.zip
+**/*.rar
+*.accdb
+*.text
+**/.env
+**/package-lock.json
+**/.hintrc
+# *.cmd
+**/report
+**/Backup
+**/Json
+# **/Cdn

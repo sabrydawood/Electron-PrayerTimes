@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <title>Prayer Times</title>
+    <link rel="stylesheet" href="./public/style.css">
+</head>
+
+<body>
+    <h1 class="title">
+        اوقات الصلاوات
+    </h1>
+    <!--  Current Time -->
+    <span>الوقت الحالي</span>
+    <div class="grid-col">
+        <p id="time"></p>
+        <p id="Date"></p>
+    </div>
+    <!--  Next Pray -->
+    <span>
+        الصلاة القادمة
+    </span>
+    <div id="NextPray" class="grid-col">
+        <p id="NextPrayTime"></p>
+        <p id="NextPrayName"></p>
+    </div>
+
+    <!--    Buttons -->
+    <div style="position: relative;">
+        <button type="button" onclick="fetchData()">تحديث البيانات</button>
+        <div class="menu" onclick="ToggleSideBar(this)">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </div>
+    </div>
+    <div class="container">
+        <!--  Sidebar -->
+        <aside id="sidebar" class="closed">
+            <div class="form-control">
+                <label for="settings-city">المدينة</label>
+                <select name="settings-city" id="settings-city">
+                    <option value="cairo">القاهرة</option>
+                    <option value=""></option>
+                    <option value=""></option>
+                    <option value=""></option>
+                    <option value=""></option>
+                </select>
+            </div>
+            
+        </aside>
+        <!--  Main -->
+        <main>
+            <div class="loader" id="loader"></div>
+            <!--  Prayer Times -->
+            <div id="Prayer-Times"></div>
+        </main>
+    </div>
+    <button id="playAudio" hidden>Play Audio</button>
+    <audio id="audioPlayer" src="./public/Azan.mp3" hidden></audio>
+    <script src="./public/script.js"> </script>
+</body>
+
+</html>

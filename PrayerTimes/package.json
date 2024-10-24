@@ -1,0 +1,44 @@
+{
+  "name": "prayertimes",
+  "version": "1.0.0",
+  "description": "A simple Prayer Times Appliction",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "electron .",
+    "build": "electron-builder --win"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^33.0.2",
+    "electron-builder": "^25.1.8",
+    "nodemon": "^3.1.7"
+  },
+  "build": {
+    "appId": "com.sabry.PrayerTimes",
+    "productName": "PrayerTimes",
+    "directories": {
+      "output": "dist"
+    },
+    "icon": "./Icon.ico",
+    "files": [
+      "main.js",
+      "index.html",
+      "preload.js",
+      "App/*",
+      "public/*",
+      "node_modules/**/*"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  }
+}
