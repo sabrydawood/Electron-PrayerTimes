@@ -41,7 +41,9 @@ let WarnedAzan = false;
 const PrayerTimes = document.getElementById("Prayer-Times");
 window.addEventListener("DOMContentLoaded", () => fetchData());
 window.electronAPI.onReply("Reply-Fetch-Data", (event, Data) => {
-  const { Prayer } = Data || {};
+  const { Prayer, Database } = Data || {};
+  Object.assign(State, Database)
+  UpdateUi(Database)
   const PrayerLength = Object.keys(Prayer).length;
   if (PrayerLength < 1) {
     setTimeout(() => {
@@ -50,7 +52,6 @@ window.electronAPI.onReply("Reply-Fetch-Data", (event, Data) => {
   } else {
     PrayerTimesDate = Prayer;
     PrayerTimes.innerHTML = "";
-
     Object.entries(Prayer).map(([Name, Time]) => {
       const gridCol = document.createElement("div");
       gridCol.classList.add("grid-col");
@@ -104,8 +105,11 @@ function ConvertTo12HourFormat(time) {
   }
   return `${hours}:${minutes.toString().padStart(2, "0")} ${period}`;
 }
-function ToggleSideBar(x) {
-  x.classList.toggle("change");
+function ToggleSideBar() {
+  const MenuLeft = document.getElementById("menu-left");
+  const MenuRight = document.getElementById("menu-right");
+  MenuRight.classList.toggle("closed");
+  MenuLeft.classList.toggle("open");
   document.getElementById("sidebar").classList.toggle("closed");
 }
 function TimeToMinutes(time, add = 0) {

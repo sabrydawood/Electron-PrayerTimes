@@ -30,7 +30,7 @@
     <!--    Buttons -->
     <div style="position: relative;">
         <button type="button" onclick="fetchData()">تحديث البيانات</button>
-        <div class="menu" onclick="ToggleSideBar(this)">
+        <div class="menu menu-right" id="menu-right" onclick="ToggleSideBar()">
             <div class="bar1"></div>
             <div class="bar2"></div>
             <div class="bar3"></div>
@@ -39,17 +39,26 @@
     <div class="container">
         <!--  Sidebar -->
         <aside id="sidebar" class="closed">
-            <div class="form-control">
-                <label for="settings-city">المدينة</label>
-                <select name="settings-city" id="settings-city">
-                    <option value="cairo">القاهرة</option>
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
-                </select>
+            <div class="menu menu-left change" id="menu-left" hidden onclick="ToggleSideBar()">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
             </div>
-            
+            <form id="settings-form">
+                <div class="form-control">
+                    <label for="settings-country">الدولة</label>
+                    <select name="Country" id="settings-country"></select>
+                </div>
+                <div class="form-control">
+                    <label for="settings-city">المدينة</label>
+                    <select name="City" id="settings-city"></select>
+                </div>
+                <div class="form-control">
+                    <label for="settings-method">طريقة الحساب</label>
+                    <select name="Method" id="settings-method"></select>
+                </div>
+                <button type="submit">حفظ الاعدادات</button>
+            </form>
         </aside>
         <!--  Main -->
         <main>
@@ -60,6 +69,10 @@
     </div>
     <button id="playAudio" hidden>Play Audio</button>
     <audio id="audioPlayer" src="./public/Azan.mp3" hidden></audio>
+    <script src="./public/Data/Methods.js"> </script>
+    <script src="./public/Data/Countries.js"> </script>
+    <script src="./public/Data/Cities.js"> </script>
+    <script src="./public/Settings.js"> </script>
     <script src="./public/script.js"> </script>
 </body>
 

@@ -16,5 +16,6 @@
 # *.cmd
 **/report
 **/Backup
+**/JsonDb
 **/Json
 # **/Cdn

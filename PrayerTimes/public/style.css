@@ -1,8 +1,12 @@
+:root {
+    --Bg: rgb(156, 60, 60);
+    --Option-Bg : rgb(209, 91, 150);
+}
 
 body {
     font-family     : Arial, sans-serif;
     text-align      : center;
-    background-color: rgb(156, 60, 60);
+    background-color: var(--Bg);
     margin          : 0;
 }
 
@@ -24,11 +28,19 @@ body {
 }
 
 aside {
-    flex            : 1;
-    padding         : 20px;
-    border-radius   : 20px;
-    display         : block;
-    box-shadow : 0 0 10px rgba(0, 0, 0, 0.5);
+    flex           : 1;
+    padding        : 20px;
+    border-radius  : 20px;
+    display        : flex;
+    flex-direction : column;
+    align-items    : center;
+    justify-content: center;
+    box-shadow     : 0 0 10px rgba(0, 0, 0, 0.5);
+    position       : relative;
+}
+
+.open {
+    display: block;
 }
 
 .closed {
@@ -46,7 +58,7 @@ button {
     border-radius   : 6px;
     background-color: transparent;
     border          : none;
-    cursor: pointer;
+    cursor          : pointer;
 }
 
 .Prayer-Times {
@@ -74,18 +86,19 @@ aside {
     flex         : 1;
     border-radius: 6px;
     padding      : 5px;
-    margin-top: 0px;
+    margin-top   : 0px;
 
 }
+
 span {
-    display: block;
+    display      : block;
     border-radius: 6px;
     padding      : 5px;
     margin-bottom: 2px;
-    text-align: center;
-    width: auto;
-    font-weight: bold;
-    box-shadow : 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align   : center;
+    width        : auto;
+    font-weight  : bold;
+    box-shadow   : 0 0 10px rgba(0, 0, 0, 0.5);
 
 }
 
@@ -94,22 +107,30 @@ span {
     border-radius: 6px;
     padding      : 5px;
 }
+
 #time {
     flex: 1;
 }
 
 .menu {
-    display : inline-block;
-    cursor  : pointer;
-    position: absolute;
-    top     : 0px;
-    right   : 5px;
-    box-shadow : 0 0 10px rgba(0, 0, 0, 0.5);
-    border-radius: 6px;
+    cursor       : pointer;
+    position     : absolute;
+    top          : 0px;
+    box-shadow   : 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
     padding      : 5px;
 }
+
+.menu-right {
+    right: 5px;
+}
+
+.menu-left {
+    left: 5px;
+}
+
 .menu:hover {
-    box-shadow : 0 0 10px rgba(255, 255, 255, 0.5);  
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .bar1,
@@ -156,4 +177,31 @@ span {
     100% {
         transform: rotate(360deg);
     }
+}
+
+.form-control {
+    display      : flex;
+    padding      : 5px;
+    margin       : 5px 0;
+    border-radius: 6px;
+    align-items  : center;
+    gap          : 5px;
+    box-shadow   : 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+select {
+    padding         : 5px;
+    border-radius   : 6px;
+    background-color: transparent;
+    border          : none;
+    cursor          : pointer;
+    box-shadow      : 0 0 10px rgba(0, 0, 0, 0.5);
+    width           : 100%;
+    font-weight: bold;
+}
+
+option {
+    box-shadow : 0 0 10px rgba(0, 0, 0, 0.5);
+    font-weight: bold;
+    background : var(--Bg);
 }

@@ -1,13 +1,15 @@
 const { ipcMain } = require("electron");
 const {
   NewPrayData,
-  Cache,
   NotifyMessage,
   FetchPrayerTimes,
   Warnings,
   Finished,
   ResetAllData,
 } = require(".");
+const JsonDb = require("./JsonDb");
+const OldDb = new JsonDb("Database");
+
 module.exports = (() => {
   ipcMain.on("message-from-renderer", (event, arg) => {
     event.sender.send("reply-from-main", "Hello from the main process!");
@@ -15,6 +17,7 @@ module.exports = (() => {
   ipcMain.on("Fetch-Data", (event, arg) => {
     event.sender.send("Reply-Fetch-Data", {
       Prayer: NewPrayData,
+      Database: OldDb.Get(),
     });
   });
   ipcMain.on("Pray-Warning", (event, arg) => {
@@ -38,6 +41,25 @@ module.exports = (() => {
     const NextDayData = await FetchPrayerTimes(true);
     event.sender.send("Reply-Fetch-Data", {
       Prayer: NextDayData,
+      Database: OldDb.Get(),
+    });
+  });
+  ipcMain.on("Settings-Update", async (event, args) => {
+    const { Id, City, Country, Method } = args || {};
+    if (Id && City && Country && Method) {
+      OldDb.Update(
+        {
+          City,
+          Country,
+          Method,
+        },
+        Id
+      );
+    }
+    const NextDayData = await FetchPrayerTimes(false);
+    event.sender.send("Reply-Fetch-Data", {
+      Prayer: NextDayData,
+      Database: OldDb.Get(),
     });
   });
 })();

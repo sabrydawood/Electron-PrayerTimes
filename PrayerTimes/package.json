@@ -1,21 +1,40 @@
 {
-  "name": "prayertimes",
-  "version": "1.0.0",
-  "description": "A simple Prayer Times Appliction",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "electron .",
-    "build": "electron-builder --win"
+    "build": "electron-builder"
   },
   "keywords": [],
-  "author": "",
   "license": "ISC",
   "devDependencies": {
     "electron": "^33.0.2",
     "electron-builder": "^25.1.8",
     "nodemon": "^3.1.7"
   },
+  "dependencies": {
+    "electron-updater": "^6.3.9"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sabrydawood/Electron-PrayerTimes.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sabrydawood/Electron-PrayerTimes/issues"
+  },
+  "homepage": "https://github.com/sabrydawood/Electron-PrayerTimes#readme",
+  "name": "prayertimes",
+  "version": "1.0.1",
+  "description": "Prayer Times Is An Desktop Application To Help You And Notify You About Your Prayer Times",
+  "productName": "PrayerTimes",
+  "author": "sabrydawood",
+  "copyright": "Copyright © 2024 sabrydawood",
+  "appId": "com.sabry.PrayerTimes",
+  "appVersion": "1.0.1",
+  "macVersion": "1.0.1",
+  "winVersion": "1.0.1",
+  "linuxVersion": "1.0.1",
+  "electronVersion": "33.0.2",
   "build": {
     "appId": "com.sabry.PrayerTimes",
     "productName": "PrayerTimes",
@@ -26,9 +45,10 @@
     "files": [
       "main.js",
       "index.html",
-      "preload.js",
+      "Icon.ico",
       "App/*",
-      "public/*",
+      "public/**/*",
+      "JsonDb",
       "node_modules/**/*"
     ],
     "win": {
@@ -39,6 +59,14 @@
     },
     "linux": {
       "target": "AppImage"
-    }
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "repo": "Electron-PrayerTimes",
+        "owner": "sabrydawood",
+        "private": false
+      }
+    ]
   }
 }
