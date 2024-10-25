@@ -38,10 +38,12 @@
   "build": {
     "appId": "com.sabry.PrayerTimes",
     "productName": "PrayerTimes",
+    "asar": false,
     "directories": {
       "output": "dist"
     },
     "icon": "./Icon.ico",
+    "removePackageScripts": true,
     "files": [
       "main.js",
       "index.html",
@@ -54,11 +56,19 @@
     "win": {
       "target": "nsis"
     },
+    "nsis": {
+      "deleteAppDataOnUninstall": true
+    },
     "mac": {
       "target": "dmg"
     },
     "linux": {
-      "target": "AppImage"
+      "target": [
+        "AppImage",
+        "rpm",
+        "deb",
+        "pacman"
+      ]
     },
     "publish": [
       {

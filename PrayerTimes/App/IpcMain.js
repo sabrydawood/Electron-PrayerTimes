@@ -55,6 +55,7 @@ module.exports = (() => {
         },
         Id
       );
+      NotifyMessage('عملية "تحديث الاعدادات"', "تم تحديث الاعدادات بنجاح");
     }
     const NextDayData = await FetchPrayerTimes(false);
     event.sender.send("Reply-Fetch-Data", {

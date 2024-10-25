@@ -25,10 +25,6 @@ async function FetchPrayerTimes(NextDay = false) {
   }?city=${DataBase.City}&country=${DataBase.Country}&method=${
     DataBase.Method
   }`;
-  console.log({
-    DataBase,
-    PrayerTimesUrl,
-  });
   try {
     const { data } = await Fetcher.Get(PrayerTimesUrl);
     let PrayData = {};
