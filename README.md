@@ -1,3 +1,6 @@
 # PrayerTimes
+  ## First Version
+  <img src="./screenshots/v1.0.0.png" />
 
-  <img src="./screenshots/PrayerTimes.png" />
+## Updated Version
+  <img src="./screenshots/v1.0.1.png" />
