@@ -20,6 +20,10 @@ let PrayerTimesDate = {
   // Maghrib: "20:15",
   // Isha: "20:21",
 };
+console.log({
+  PrayerTimesDate,
+  State,
+})
 function SetState(e) {
   switch (e.target.name) {
     case "Country": {

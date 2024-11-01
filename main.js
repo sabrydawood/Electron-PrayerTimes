@@ -22,10 +22,10 @@ function CreateWindow() {
     title: Config.AppName,
     resizable: false,
     maximizable: false,
-    width: 1000,
-    height: 600,
     icon: AppIcon,
     roundedCorners: true,
+    width: 1000,
+    height: 600,
     // show: false,
     webPreferences: {
       preload: path.join(__dirname, "public", "Js", "preload.js"),
@@ -33,7 +33,74 @@ function CreateWindow() {
       contextIsolation: true,
     },
   });
-  const menu = new Menu();
+  const menuTemplate = [
+    {
+      label: "File",
+      submenu: [
+        {
+          label: "Quit",
+          accelerator: "CmdOrCtrl+Q",
+          click: function () {
+            if (mainWindow) {
+              mainWindow.close();
+              app.quit();
+            }
+          },
+        },
+        {
+          label: "Reload",
+          accelerator: "CmdOrCtrl+R",
+          click: function () {
+            if (mainWindow) {
+              mainWindow.reload();
+            }
+          },
+        },
+        // {
+        //   label: "Open DevTools",
+        //   accelerator: "CmdOrCtrl+Shift+I",
+        //   click: function () {
+        //     if (mainWindow) {
+        //       mainWindow.webContents.openDevTools();
+        //     }
+        //   },
+        // },
+        {
+          label: "Open DevTools in new window",
+          accelerator: "CmdOrCtrl+Shift+I",
+          click: function () {
+            if (mainWindow) {
+              // Create a new BrowserWindow to host DevTools
+              const devToolsWindow = new BrowserWindow({
+                resizable: false,
+                maximizable: false,
+                icon: AppIcon,
+                roundedCorners: true,
+                autoHideMenuBar: true,
+                width: 800,
+                height: 600,
+                webPreferences: {
+                  nodeIntegration: true,
+                  contextIsolation: true,
+                },
+              });
+
+              // Open the DevTools in the new window
+              mainWindow.webContents.setDevToolsWebContents(
+                devToolsWindow.webContents
+              );
+              mainWindow.webContents.openDevTools({ mode: "detach" });
+              // Optional: Close DevTools window when main window is closed
+              mainWindow.on("closed", () => {
+                devToolsWindow.close();
+              });
+            }
+          },
+        },
+      ],
+    },
+  ];
+  const menu = Menu.buildFromTemplate(menuTemplate);
   Menu.setApplicationMenu(menu);
   mainWindow.loadFile("index.html");
   mainWindow.on("close", (event) => {

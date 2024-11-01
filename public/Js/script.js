@@ -128,21 +128,28 @@ function CalculateNextPrayer() {
   const nextPrayerName =
     Names[Object.keys(PrayerTimesDate)[prayerTimes.indexOf(nextPrayerTime)]];
   const timeUntilNext = moment(nextPrayerTime, "H:mm", "ar").fromNow();
-  const timeUntilNext5 = moment(currentTimeMins, "H:mm").isAfter(
-    moment(LastPrayer, "H:mm")
-  );
+  // const IsEndedDay = moment(currentTimeMins, "H:mm").isAfter(
+  //   moment(LastPrayer, "H:mm")
+  // );
   const isShowWarning = timeUntilNext == "بعد ٥ دقائق";
   const isPrayerTime = timeUntilNext == "بعد ثانية واحدة";
   return {
     name: nextPrayerName,
-    timeRemaining: timeUntilNext5
-      ? ConvertTo12HourFormat(nextPrayerTime)
-      : timeUntilNext,
+    timeRemaining: TimeUntilPrayer(currentTimeMins,nextPrayerTime),
     isPrayerTime,
     showWarning: isShowWarning,
   };
 }
-
+function CalcDateInHoursAndMints(nextPrayerTime) {
+  const TimetoMints = TimeToMinutes(nextPrayerTime);
+  const hours = Math.floor(TimetoMints / 60);
+  const minutes = TimetoMints % 60;
+  return {
+    hours,
+    minutes,
+  };
+  // return hours * 60 + minutes;
+}
 function FindNextPrayerTime(currentTime, prayerTimes) {
   const currentMinutes = TimeToMinutes(currentTime);
 
@@ -156,8 +163,10 @@ function FindNextPrayerTime(currentTime, prayerTimes) {
 function SetNextPrayerView(prayerName, timeRemaining) {
   document.getElementById("NextPrayName").innerText =
     prayerName || "جاري التحديث ..";
-  document.getElementById("NextPrayTime").innerText = timeRemaining == "Invalid date" ? "جاري التحديث .." : timeRemaining;
-  // `المتبقي : ${timeRemaining.hours} ساعة ${timeRemaining.minutes} دقيقة`;
+  document.getElementById(
+    "NextPrayTime"
+  ).innerText = timeRemaining ? `المتبقي : ${timeRemaining.hours} ساعة ${timeRemaining.minutes} دقيقة`  : "جاري التحديث ..";
+
 }
 
 function TimeToMinutes(time, add = 0) {
@@ -167,17 +176,15 @@ function TimeToMinutes(time, add = 0) {
 
 function TimeUntilPrayer(currentTime, prayerTime) {
   if (!currentTime || !prayerTime) {
-    return { hours: 0, minutes: 0, showWarning: false };
+    return false;
   }
-
-  const MinutesToTime = (totalMinutes) => {
-    const hours = Math.floor(totalMinutes / 60);
-    const minutes = totalMinutes % 60;
-    return `${hours.toString().padStart(2, "0")}:${minutes
-      .toString()
-      .padStart(2, "0")}`;
-  };
-
+  // const MinutesToTime = (totalMinutes) => {
+  //   const hours = Math.floor(totalMinutes / 60);
+  //   const minutes = totalMinutes % 60;
+  //   return `${hours.toString().padStart(2, "0")}:${minutes
+  //     .toString()
+  //     .padStart(2, "0")}`;
+  // };
   const currentMinutes = TimeToMinutes(currentTime);
   const prayerMinutes = TimeToMinutes(prayerTime);
   let minutesUntilPrayer = prayerMinutes - currentMinutes;
@@ -190,17 +197,13 @@ function TimeUntilPrayer(currentTime, prayerTime) {
   if (warningTimeMinutes < 0) {
     warningTimeMinutes += 1440;
   }
-
-  const warningTime = MinutesToTime(warningTimeMinutes);
   const hours = Math.floor(minutesUntilPrayer / 60);
   const minutes = minutesUntilPrayer % 60;
+
 
   return {
     hours,
     minutes,
-    warning: warningTime,
-    showWarning: currentTime == warningTime,
-    IsPrayNow: currentTime == prayerTime,
   };
 }
 
