@@ -43,7 +43,10 @@ function CreateWindow() {
           click: function () {
             if (mainWindow) {
               mainWindow.close();
+              app.isQuiting = true;
               app.quit();
+              tray.destroy();
+              process.exit(1);
             }
           },
         },
