@@ -2,6 +2,7 @@ const SettingsFormElement = document.getElementById("settings-form");
 const CountryElement = document.getElementById("settings-country");
 const CityElement = document.getElementById("settings-city");
 const MethodElement = document.getElementById("settings-method");
+const AppVersionElement= document.getElementById("AppVersion");
 CountryElement.onchange = SetState;
 CityElement.onchange = SetState;
 MethodElement.onchange = SetState;
@@ -12,7 +13,13 @@ const State = {
   Country: "EG",
   Method: "5",
 };
-
+let PrayerTimesDate = {
+  // Fajr: "19:57",
+  // Dhuhr: "20:03",
+  // Asr: "20:09",
+  // Maghrib: "20:15",
+  // Isha: "20:21",
+};
 function SetState(e) {
   switch (e.target.name) {
     case "Country": {
@@ -33,16 +40,14 @@ function SetState(e) {
   }
   State[e.target.name] = e.target.value;
 }
-function UpdateUi(NewData) {
+function UpdateUi(NewData, AppVersion) {
   CountryElement.value = NewData.Country;
   CityElement.value = NewData.City;
   MethodElement.value = NewData.Method;
+  AppVersionElement.innerText = `الاصدار : ${AppVersion}`;
 }
 function HandleSubmit(e) {
   e.preventDefault();
-  console.log({
-    State,
-  });
   window.electronAPI.sendMessage("Settings-Update", State);
 }
 document.addEventListener("DOMContentLoaded", () =>
@@ -86,3 +91,11 @@ function SetMethods() {
 }
 
 function HandleSentNewCities(Country) {}
+
+function ToggleSideBar() {
+  const MenuLeft = document.getElementById("menu-left");
+  const MenuRight = document.getElementById("menu-right");
+  MenuRight.classList.toggle("closed");
+  MenuLeft.classList.toggle("open");
+  document.getElementById("sidebar").classList.toggle("closed");
+}

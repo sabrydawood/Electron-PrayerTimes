@@ -1,34 +1,42 @@
 <!DOCTYPE html>
-<html dir="rtl">
+<html dir="rtl" lang="ar">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
-    <title>Prayer Times</title>
-    <link rel="stylesheet" href="./public/style.css">
+    <title> اوقات الصلاوات</title>
+    <link rel="shortcut icon" href="./public/Imgs/Icon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./public/Css/style.css">
 </head>
 
 <body>
+    <h3 id="AppVersion">
+
+    </h3>
     <h1 class="title">
         اوقات الصلاوات
     </h1>
     <!--  Current Time -->
-    <span>الوقت الحالي</span>
-    <div class="grid-col">
-        <p id="time"></p>
-        <p id="Date"></p>
+    <div class="box">
+        <span>الوقت الحالي</span>
+        <div class="grid-col">
+            <p id="time"></p>
+            <p id="Date"></p>
+        </div>
     </div>
     <!--  Next Pray -->
-    <span>
-        الصلاة القادمة
-    </span>
-    <div id="NextPray" class="grid-col">
-        <p id="NextPrayTime"></p>
-        <p id="NextPrayName"></p>
+    <div class="box">
+        <span>
+            الصلاة القادمة
+        </span>
+        <div id="NextPray" class="grid-col">
+            <p id="NextPrayTime"></p>
+            <p id="NextPrayName"></p>
+        </div>
     </div>
 
     <!--    Buttons -->
-    <div style="position: relative;">
+    <div style="position: relative;" class="mt-2">
         <button type="button" onclick="fetchData()">تحديث البيانات</button>
         <div class="menu menu-right" id="menu-right" onclick="ToggleSideBar()">
             <div class="bar1"></div>
@@ -67,13 +75,38 @@
             <div id="Prayer-Times"></div>
         </main>
     </div>
-    <button id="playAudio" hidden>Play Audio</button>
-    <audio id="audioPlayer" src="./public/Azan.mp3" hidden></audio>
+
+    <div id="modal" class="modal">
+        <div class="modal-overlay" id="modal-overlay"></div>
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2 id="modal-prayer-name"> </h2>
+            <div>
+                <img src="./public/Imgs/Kaba.jpg" class="modal-img" alt="">
+            </div>
+            <button id="modal-close-voice-btn">
+                ايقاف الصوت
+            </button>
+            <p id="modal-prayer-text">قال رسول الله صلى الله عليه وسلم
+                الصَّلَاةُ الخَمْسُ، وَالْجُمْعَةُ إلى الجُمْعَةِ، كَفَّارَةٌ لِما
+                بيْنَهُنَّ، ما لَمْ تُغْشَ الكَبَائِرُ
+            </p>
+        </div>
+    </div>
+    <div style="display: none;">
+        <button id="openModalBtn">Open Modal</button>
+        <button id="Azan-Btn">Play Audio</button>
+        <button id="Warn-Btn">Play Audio</button>
+        <audio id="AzanPlayer" src="./public/Audio/Azan.mp3" hidden></audio>
+        <audio id="WarnPlayer" src="./public/Audio/Warning.mp3" hidden></audio>
+    </div>
+    <script src="./public/Js/modal.js"> </script>
+    <script src="./public/Js/moment.js"> </script>
     <script src="./public/Data/Methods.js"> </script>
     <script src="./public/Data/Countries.js"> </script>
     <script src="./public/Data/Cities.js"> </script>
-    <script src="./public/Settings.js"> </script>
-    <script src="./public/script.js"> </script>
+    <script src="./public/Js/Settings.js"> </script>
+    <script src="./public/Js/script.js"> </script>
 </body>
 
 </html>

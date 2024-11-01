@@ -28,7 +28,7 @@ function CreateWindow() {
     roundedCorners: true,
     // show: false,
     webPreferences: {
-      preload: path.join(__dirname, "public", "preload.js"),
+      preload: path.join(__dirname, "public", "Js", "preload.js"),
       nodeIntegration: true,
       contextIsolation: true,
     },

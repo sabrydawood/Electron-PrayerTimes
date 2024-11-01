@@ -1,7 +1,7 @@
 const { dialog } = require("electron");
 const { autoUpdater } = require("electron-updater");
 
-module.exports = (() => {
+module.exports = () => {
   autoUpdater.on("update-available", () => {
     dialog.showMessageBox({
       type: "info",
@@ -29,4 +29,4 @@ module.exports = (() => {
       error == null ? "خطأ غير معروف" : error.toString()
     );
   });
-})();
+};

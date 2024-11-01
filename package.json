@@ -29,20 +29,20 @@
   "author": "sabrydawood",
   "copyright": "Copyright © 2024 sabrydawood",
   "appId": "com.sabry.PrayerTimes",
-  "version": "1.0.2",
-  "appVersion": "1.0.2",
-  "macVersion": "1.0.2",
-  "winVersion": "1.0.2",
-  "linuxVersion": "1.0.2",
+  "version": "1.0.3",
+  "appVersion": "1.0.3",
+  "macVersion": "1.0.3",
+  "winVersion": "1.0.3",
+  "linuxVersion": "1.0.3",
   "electronVersion": "33.0.2",
   "build": {
     "appId": "com.sabry.PrayerTimes",
     "productName": "PrayerTimes",
-    "asar": false,
+    "asar": true,
     "directories": {
       "output": "dist"
     },
-    "icon": "./Icon.ico",
+    "icon": "./public/Imgs/Icon.ico",
     "removePackageScripts": true,
     "files": [
       "main.js",

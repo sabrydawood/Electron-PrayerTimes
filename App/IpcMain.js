@@ -8,6 +8,7 @@ const {
   ResetAllData,
 } = require(".");
 const JsonDb = require("./JsonDb");
+const Config = require("./Config");
 const OldDb = new JsonDb("Database");
 
 module.exports = (() => {
@@ -18,6 +19,7 @@ module.exports = (() => {
     event.sender.send("Reply-Fetch-Data", {
       Prayer: NewPrayData,
       Database: OldDb.Get(),
+      AppVersion: Config.AppVersion
     });
   });
   ipcMain.on("Pray-Warning", (event, arg) => {
@@ -61,6 +63,7 @@ module.exports = (() => {
     event.sender.send("Reply-Fetch-Data", {
       Prayer: NextDayData,
       Database: OldDb.Get(),
+      AppVersion: Config.AppVersion
     });
   });
 })();
