@@ -2,9 +2,10 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "electron .",
+    "dev": "electron --trace-warnings .",
     "build": "electron-builder"
   },
+  "type": "commonjs",
   "keywords": [],
   "license": "ISC",
   "devDependencies": {
@@ -13,7 +14,8 @@
     "nodemon": "^3.1.7"
   },
   "dependencies": {
-    "electron-updater": "^6.3.9"
+    "electron-updater": "^6.3.9",
+    "node-fetch": "^2.7.0"
   },
   "repository": {
     "type": "git",
@@ -38,7 +40,7 @@
   "build": {
     "appId": "com.sabry.PrayerTimes",
     "productName": "PrayerTimes",
-    "asar": true,
+    "asar": false,
     "directories": {
       "output": "dist"
     },

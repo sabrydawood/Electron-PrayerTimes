@@ -1,8 +1,8 @@
 const { dialog, nativeImage } = require("electron");
 const path = require("path");
-const Fetcher = require("./FetchClient");
 const Config = require("./Config");
 const JsonDb = require("./JsonDb");
+const fetch = require("node-fetch");
 const Cache = new Map();
 const OldDb = new JsonDb("Database");
 const NewPrayData = {};
@@ -26,7 +26,8 @@ async function FetchPrayerTimes(NextDay = false) {
     DataBase.Method
   }`;
   try {
-    const { data } = await Fetcher.Get(PrayerTimesUrl);
+    const response = await fetch(PrayerTimesUrl);
+    const { data } = await response.json();
     let PrayData = {};
     for (const key in AllowedToGet) {
       const element = AllowedToGet[key];
